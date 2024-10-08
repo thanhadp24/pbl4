@@ -1,94 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home page</title>
-    <link rel="stylesheet" href="css/fa.all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/fa.all.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <h2>Nhận diện Kanji !!!</h2>
     <div class="wrapper">
-        <div class="block-search">
-            <input type="search" class="search" placeholder="日本, nihon, Nhật Bản">
-            <div class="menu-icon">
-                <label class="draw-icon">
-                    <i class="fa-regular fa-pen-to-square"></i>
-                </label>
-                <label class="camera-icon">
-                    <i class="fa-solid fa-camera"></i>
-                </label>
-                <label class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </label>
-            </div>
+      <div class="block-search">
+        <input
+          type="search"
+          class="search"
+          placeholder="日本, nihon, Nhật Bản"
+        />
+        <div class="menu-icon">
+          <label class="draw-icon">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </label>
+          <label class="camera-icon">
+            <i class="fa-solid fa-camera"></i>
+          </label>
+          <label class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </label>
         </div>
+      </div>
 
-        <div class="block-draw">
-            <canvas class="canvas"></canvas>
-            <div class="kanji-result"></div>
-            <div class="tools">
-                <button class="btn undo"><i class="fa-solid fa-rotate-left"></i></button>
-                <button class="btn clear">Clear</button>
-            </div>
+      <div class="block-draw">
+        <canvas class="canvas"></canvas>
+        <div class="kanji-result"></div>
+        <div class="tools">
+          <button class="btn undo">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+          <button class="btn clear">Clear</button>
         </div>
+      </div>
 
-        <div class="block-result">
-            <ul class="block-info">
-                <li class="line-item">
-                    <div class="item-title">Hán tự:</div>
-                    <div class="item-info">
-                        <span class="bg-kanji">公</span>
-                    </div>
-                </li>
-                <li class="line-item">
-                    <div class="item-title">Kunyomi:</div>
-                    <div class="item-info">
-                        <span class="bg-kunyomi">おおやけ</span>
-                    </div>
-                </li>
-                <li class="line-item">
-                    <div class="item-title">Onyomi:</div>
-                    <div class="item-info">
-                        <span class="bg-onyomi">コウ</span>
-                        <span class="bg-onyomi">ク</span>
-                    </div>
-                </li>
-                <li class="line-item">
-                    <div class="item-title">Nghĩa:</div>
-                    <div class="item-info">
-                        <p>Công, không tư túi gì, gọi là công. Chung, sự gì do mọi người cùng đồng ý gọi là công. Cùng chung. Của chung. Việc quan. Quan công. Tước công, tước to nhất trong năm tước công hầu bá tử nam [公侯伯子男]. Bố chồng. Ông, tiếng người này gọi người kia. Con đực.</p>    
-                    </div>
-                </li>
-            </ul>
-
-            <div class="block-example">
-                <p>Ví dụ</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>不公平</td>
-                            <td>ふこうへい</td>
-                            <td>không công bằng; bất công; sự không công bằng; sự bất công</td>
-                        </tr>
-                        <tr>
-                            <td>不公正</td>
-                            <td>ふこうせい</td>
-                            <td>bội nghĩa; oan</td>
-                        </tr>
-                        <tr>
-                            <td>不公正</td>
-                            <td>ふこうせい</td>
-                            <td>bội nghĩa; oan</td>
-                        </tr>
-                    </tbody>
-                </table>
+      <div class="block-result">
+        <ul class="block-info">
+          <li class="line-item">
+            <div class="item-title">Hán tự:</div>
+            <div class="item-info">
+              <span class="bg-kanji">公</span>
             </div>
+          </li>
+          <li class="line-item">
+            <div class="item-title">Kunyomi:</div>
+            <div class="item-info">
+              <span class="bg-kunyomi">おおやけ</span>
+            </div>
+          </li>
+          <li class="line-item">
+            <div class="item-title">Onyomi:</div>
+            <div class="item-info">
+              <span class="bg-onyomi">コウ</span>
+              <span class="bg-onyomi">ク</span>
+            </div>
+          </li>
+          <li class="line-item">
+            <div class="item-title">Nghĩa:</div>
+            <div class="item-info">
+              <p>
+                Công, không tư túi gì, gọi là công. Chung, sự gì do mọi người
+                cùng đồng ý gọi là công. Cùng chung. Của chung. Việc quan. Quan
+                công. Tước công, tước to nhất trong năm tước công hầu bá tử nam
+                [公侯伯子男]. Bố chồng. Ông, tiếng người này gọi người kia. Con
+                đực.
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="block-example">
+          <p>Ví dụ</p>
+          <table>
+            <tbody>
+              <tr>
+                <td>不公平</td>
+                <td>ふこうへい</td>
+                <td>
+                  không công bằng; bất công; sự không công bằng; sự bất công
+                </td>
+              </tr>
+              <tr>
+                <td>不公正</td>
+                <td>ふこうせい</td>
+                <td>bội nghĩa; oan</td>
+              </tr>
+              <tr>
+                <td>不公正</td>
+                <td>ふこうせい</td>
+                <td>bội nghĩa; oan</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-    
 
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>
