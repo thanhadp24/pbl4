@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/register.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        action="user/register"
+        method="POST"
+        class="form"
+        id="register-form"
+      >
+        <div class="logo-container">
+          <img src="../assets/img/logo.png" alt="Kanji Logo" class="logo" />
+        </div>
+        <div class="spacer"></div>
+
+        <div class="form-group">
+          <label for="username" class="form-label">Tên đăng nhập</label>
+          <!-- Changed to username -->
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="VD: Trần Văn A"
+            class="form-control"
+            required
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="VD: email@domain.com"
+            class="form-control"
+            required
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Mật khẩu</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Nhập mật khẩu"
+            class="form-control"
+            required
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password_confirmation" class="form-label"
+            >Nhập lại mật khẩu</label
+          >
+          <input
+            id="password_confirmation"
+            name="password_confirmation"
+            placeholder="Nhập lại mật khẩu"
+            type="password"
+            class="form-control"
+            required
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <button class="form-submit">Đăng ký</button>
+      </form>
+    </div>
+    <script src=".././assets/js/validator.js"></script>
+
+    <script>
+      const form = document.getElementById("register-form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          username: form.username.value,
+          email: form.email.value,
+          password: form.password.value,
+        };
+
+        try {
+          const response = await fetch("http://localhost:8080/user/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+          if (response.ok) {
+            alert("User registered successfully!");
+          } else {
+            alert("Error: " + result.message);
+          }
+        } catch (error) {
+          console.error("Error during registration:", error);
+        }
+      });
+    </script>
+  </body>
+</html>
