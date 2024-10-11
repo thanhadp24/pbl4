@@ -6,15 +6,15 @@ const router = express.Router();
 
 router.get("/", kanjiController.index);
 
-router.post("/create", authorizeRoles("admin"), kanjiController.getCreatePage);
+// router.post("/create", authorizeRoles("admin"), kanjiController.getCreatePage);
 
 router.post("/create", authorizeRoles("admin"), kanjiController.create);
 
-router.get(
-  "/update/:id",
-  authorizeRoles("admin"),
-  kanjiController.getUpdatePage
-);
+// router.get(
+//   "/update/:id",
+//   authorizeRoles("admin"),
+//   kanjiController.getUpdatePage
+// );
 
 router.put("/update/:id", authorizeRoles("admin"), kanjiController.update);
 
