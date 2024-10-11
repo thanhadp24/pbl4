@@ -214,6 +214,18 @@ a {
     color: #000;
 }
 
+.fs-13 {
+    font-size: 13px;
+}
+
+.block {
+    display: block !important;
+}
+
+.none {
+    display: none !important;
+}
+
 .highlight {
     font-weight: bold;
     color: #007bff;
