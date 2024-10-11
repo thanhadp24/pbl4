@@ -28,9 +28,9 @@ class UserController {
 
   async register(req, res) {
     try {
-      const { username, password, email } = req.body;
+      let { username, password, email, roleId } = req.body;
 
-      const roleId = 2; //default role for users
+      roleId = roleId ?? 2; //2: user role
 
       await UserModel.addUser(username, password, email, roleId);
 
@@ -112,7 +112,7 @@ class UserController {
         process.env.JWT_SECRET,
         { expiresIn: "1h" }
       );
-      
+
       res.status(200).send({ message: "Login successful", token });
     } catch (error) {
       console.error(error.message);

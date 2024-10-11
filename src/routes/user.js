@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", userController.index);
 
-router.get("/register", userController.getRegisterPage);
+// router.get("/register", userController.getRegisterPage);
 
 router.post("/register", userController.register);
 
