@@ -1,0 +1,22 @@
+#page-center {
+    width: 90%;
+    padding-left: 20px;
+    .title {
+        background-color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        color: #000;
+        font-weight: 560;
+        font-size: 20px;
+    }
+
+    .block {
+        border: 2px solid var(--border-green);
+        padding: 5px 0;
+        h3 {
+            margin-top: -15px !important;
+            color: var(--color-red);
+        }
+    }
+    
+}

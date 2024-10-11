@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 let drawIcon = document.querySelector('.draw-icon');
 drawIcon.addEventListener('click', ()=> {
@@ -77,3 +78,12 @@ function canvasDraw(areaDraw){
     })
 
 }
+=======
+function loadData(e){
+    console.log(e.target.parentNode)
+    if(document.querySelector('.sidebar-nav li.active')){
+        document.querySelector('.sidebar-nav li.active').classList.remove('active');
+    }
+    e.target.closest('li').classList.add('active');
+}
+>>>>>>> 8298930 (08.10.2024)
