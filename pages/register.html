@@ -21,14 +21,13 @@
 
         <div class="form-group">
           <label for="username" class="form-label">Tên đăng nhập</label>
-          <!-- Changed to username -->
           <input
             id="username"
             name="username"
             type="text"
             placeholder="VD: Trần Văn A"
             class="form-control"
-            required
+            rules="required|min:3|max:20"
           />
           <span class="form-message"></span>
         </div>
@@ -41,7 +40,7 @@
             type="text"
             placeholder="VD: email@domain.com"
             class="form-control"
-            required
+            rules="required|email"
           />
           <span class="form-message"></span>
         </div>
@@ -54,7 +53,7 @@
             type="password"
             placeholder="Nhập mật khẩu"
             class="form-control"
-            required
+            rules="required|min:6"
           />
           <span class="form-message"></span>
         </div>
@@ -69,28 +68,28 @@
             placeholder="Nhập lại mật khẩu"
             type="password"
             class="form-control"
-            required
+            rules="required|isConfirmed"
           />
           <span class="form-message"></span>
         </div>
 
-        <button class="form-submit">Đăng ký</button>
+        <button type="submit" class="form-submit">Đăng ký</button>
       </form>
     </div>
-    <script src=".././assets/js/validator.js"></script>
+
+    <script src="../assets/js/validator.js"></script>
 
     <script>
-      const form = document.getElementById("register-form");
+      // Khởi tạo đối tượng Validator cho form đăng ký
+      const validator = new Validator("#register-form");
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+      // Xử lý sự kiện khi form được submit
+      validator.onSubmit = function (formValues) {
+        registerUser(formValues);
+      };
 
-        const formData = {
-          username: form.username.value,
-          email: form.email.value,
-          password: form.password.value,
-        };
-
+      // Hàm đăng ký người dùng
+      async function registerUser(formData) {
         try {
           const response = await fetch("http://localhost:8080/user/register", {
             method: "POST",
@@ -102,14 +101,16 @@
 
           const result = await response.json();
           if (response.ok) {
-            alert("User registered successfully!");
+            alert("Đăng ký thành công!");
           } else {
-            alert("Error: " + result.message);
+            alert("Lỗi: " + result.message);
           }
         } catch (error) {
-          console.error("Error during registration:", error);
+          console.error("Có lỗi trong quá trình đăng ký:", error);
+        } finally {
+          hideLoading();
         }
-      });
+      }
     </script>
   </body>
 </html>
