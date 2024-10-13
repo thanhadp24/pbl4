@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/css/register.css" />
+    <link rel="stylesheet" href="../assets/css/user_form.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Register</title>
   </head>
   <body>
@@ -77,18 +84,46 @@
       </form>
     </div>
 
+    <!-- Loader overlay -->
+    <div class="modal loader-overlay">
+      <div class="loader"></div>
+    </div>
+
+    <div class="modal" id="success-popup">
+      <div class="popup show">
+        <div class="popup-icon">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h2 class="popup-title">Success!</h2>
+        <h3 class="popup-description">Bạn đã đăng kí thành công.</h3>
+        <div class="popup-close-button">
+          <button id="close-popup-btn">Đóng</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="failed-popup">
+      <div class="popup show">
+        <div class="popup-icon">
+          <i class="fa-solid fa-x"></i>
+        </div>
+        <h2 class="popup-title">Failed!</h2>
+        <h3 class="popup-description">Đăng kí thất bại.</h3>
+        <div class="popup-close-button">
+          <button id="close-popup-btn">Đóng</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../assets/js/validator.js"></script>
 
     <script>
-      // Khởi tạo đối tượng Validator cho form đăng ký
       const validator = new Validator("#register-form");
 
-      // Xử lý sự kiện khi form được submit
       validator.onSubmit = function (formValues) {
+        showLoading();
         registerUser(formValues);
       };
 
-      // Hàm đăng ký người dùng
       async function registerUser(formData) {
         try {
           const response = await fetch("http://localhost:8080/user/register", {
@@ -101,15 +136,60 @@
 
           const result = await response.json();
           if (response.ok) {
-            alert("Đăng ký thành công!");
+            showSuccessPopup(); // Show success popup on successful registration
           } else {
-            alert("Lỗi: " + result.message);
+            showFailedPopup(result.message || "Đăng ký thất bại!"); // Show error popup
           }
         } catch (error) {
-          console.error("Có lỗi trong quá trình đăng ký:", error);
+          showFailedPopup("Có lỗi trong quá trình đăng ký: " + error.message); // Show error message
         } finally {
-          hideLoading();
+          hideLoading(); // Hide loader after request is complete
         }
+      }
+
+      function showSuccessPopup() {
+        const popup = document.getElementById("success-popup");
+        popup.classList.add("active");
+      }
+
+      function showFailedPopup(errorMessage) {
+        const popup = document.getElementById("failed-popup");
+        const popupDescription = popup.querySelector(".popup-description");
+        popupDescription.textContent = errorMessage; // Update error message
+        popup.classList.add("active");
+      }
+
+      function hideErrorPopup() {
+        const popup = document.getElementById("failed-popup");
+        popup.classList.remove("active");
+      }
+
+      document
+        .getElementById("close-popup-btn")
+        .addEventListener("click", () => {
+          const successPopup = document.getElementById("success-popup");
+          const failedPopup = document.getElementById("failed-popup");
+
+          // Check which popup is active and hide it
+          if (successPopup.classList.contains("active")) {
+            successPopup.classList.remove("active");
+            location.reload();
+          }
+
+          if (failedPopup.classList.contains("active")) {
+            failedPopup.classList.remove("active");
+            console.log("Xin chao");
+
+            location.reload();
+          }
+        });
+
+      function showLoading() {
+        document.querySelector(".loader-overlay").style.display = "flex";
+      }
+
+      function hideLoading() {
+        document.querySelector(".loader-overlay").style.display = "none";
       }
     </script>
   </body>
